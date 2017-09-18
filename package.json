@@ -1,0 +1,24 @@
+{
+  "name": "react-native-map-markerclustering",
+  "version": "1.0.0",
+  "description": "Add marker clustering in airbnb/react-native-map",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/himanshusingh2407/react-native-map-markerClustering.git"
+  },
+  "keywords": [
+    "airbnb/react-native-map",
+    "react-native",
+    "map"
+  ],
+  "author": "Himanshu Singh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/himanshusingh2407/react-native-map-markerClustering/issues"
+  },
+  "homepage": "https://github.com/himanshusingh2407/react-native-map-markerClustering#readme"
+}
