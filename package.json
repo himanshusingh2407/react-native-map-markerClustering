@@ -20,5 +20,10 @@
   "bugs": {
     "url": "https://github.com/himanshusingh2407/react-native-map-markerClustering/issues"
   },
-  "homepage": "https://github.com/himanshusingh2407/react-native-map-markerClustering#readme"
+  "homepage": "https://github.com/himanshusingh2407/react-native-map-markerClustering#readme",
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-native": "^0.48.3",
+    "react-native-maps": "^0.16.4"
+  }
 }
