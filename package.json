@@ -1,6 +1,6 @@
 {
   "name": "react-native-map-markerclustering",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Add marker clustering in airbnb/react-native-map",
   "main": "index.js",
   "scripts": {
@@ -21,9 +21,12 @@
     "url": "https://github.com/himanshusingh2407/react-native-map-markerClustering/issues"
   },
   "homepage": "https://github.com/himanshusingh2407/react-native-map-markerClustering#readme",
+  "peerDependencies": {
+    "react": ">=15.4.0 || ^16.0.0-alpha",
+    "react-native": ">=0.40",
+    "react-native-maps": ">=0.15.0"
+  },
   "dependencies": {
-    "react": "^15.6.1",
-    "react-native": "^0.48.3",
-    "react-native-maps": "^0.16.4"
+    "react-native-dimension": "^1.0.6"
   }
 }
