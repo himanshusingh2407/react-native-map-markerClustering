@@ -7,7 +7,7 @@ const height = h(100);
 const width = w(100);
 
 const divideBy = 5;
-const clusterPercentageRange = 0.05;
+const clusterPercentageRange = 0.14;
 var _root;
 
 export default class MapMarkerClustering extends Component {
