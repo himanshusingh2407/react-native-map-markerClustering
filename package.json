@@ -1,6 +1,6 @@
 {
   "name": "react-native-map-markerclustering",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Add marker clustering in airbnb/react-native-map",
   "main": "index.js",
   "scripts": {
