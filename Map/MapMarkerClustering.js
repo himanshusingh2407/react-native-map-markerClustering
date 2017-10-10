@@ -73,7 +73,7 @@ export default class MapMarkerClustering extends Component {
                 this.state.numberOfMarkers = size;
                 markerKey = 0;
                 newArray.map((item) => {
-                    if (item.props && item.props.coordinate) {
+                    if (item.props && item.props.coordinate && !item.props.disableClustering) {
                         this.state.markers.add({
                             key: markerKey,
                             belly: new Set(),
@@ -160,15 +160,14 @@ export default class MapMarkerClustering extends Component {
                                                                customClusterMarkerDesign = {this.props.customClusterMarkerDesign}
                     >{marker.props.children}</ClusteredMarker>);
                 });
-                this.setState(this.state);
             }
         } else {
             this.state.markersOnMap = [];
             this.state.markers.forEach((marker) => {
                 this.state.markersOnMap.push(<ClusteredMarker {...marker}>{marker.props.children}</ClusteredMarker>);
             });
-            this.setState(this.state);
         }
+        this.setState({ markersOnMap: this.state.markersOnMap });
     }
 
     render() {
