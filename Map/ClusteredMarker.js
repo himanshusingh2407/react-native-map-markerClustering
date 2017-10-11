@@ -121,7 +121,7 @@ export default class CustomMarker extends Component {
                         onPress = {()=>{
                             this.props.onClusterPress(this.state.props.coordinate);
                         }}
-                        title=''
+                        title={null}
                         >
                         {htmlElement}
                     </Marker>
@@ -131,7 +131,7 @@ export default class CustomMarker extends Component {
                     <Marker
                         key = {isCluster}
                         {...this.state.props}
-                        title=''
+                        title={null}
                         >
                         {htmlElement}
                     </Marker>
