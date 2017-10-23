@@ -12,8 +12,8 @@ var _root;
 
 export default class MapMarkerClustering extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             enableClustering: true,
             clusterColor: '',
@@ -22,7 +22,7 @@ export default class MapMarkerClustering extends Component {
             clusterBorderWidth: 0,
             numberOfMarkers: 0,
             initDelta: 0,
-            region: {},
+            region: props.region,
             markers: new Set(),
             markersOnMap: [],
             otherChildren: [],
@@ -34,7 +34,6 @@ export default class MapMarkerClustering extends Component {
         this.state.markers.clear();
         this.state.mapProps = propsData;
         this.state.initDelta = propsData.region.latitudeDelta;
-        this.state.region = propsData.region;
         this.state.numberOfMarkers = 0;
         this.state.otherChildren = [];
 
@@ -111,7 +110,6 @@ export default class MapMarkerClustering extends Component {
                 this.calculateCluster(-1, region.latitudeDelta * clusterPercentageRange);
             }
         }
-        this.setState({region: region});
     }
 
     calculateCluster(direction, clusterRange) {
@@ -197,3 +195,7 @@ export default class MapMarkerClustering extends Component {
     }
 
 }
+
+MapMarkerClustering.defaultProps = {
+    region: {}
+};
