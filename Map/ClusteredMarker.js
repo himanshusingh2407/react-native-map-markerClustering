@@ -14,9 +14,9 @@ export default class CustomMarker extends Component {
             isLoaded:false,
             props: {},
             value: 0,
-            clusterColor: '#F5F5F5',
-            clusterTextColor: '#FF5252',
-            clusterBorderColor: '#FF5252',
+            clusterColor: '#FC1424',
+            clusterTextColor: '#FFFFFF',
+            clusterBorderColor: '#FFFFFF',
             clusterBorderWidth: 1
         };
     }
