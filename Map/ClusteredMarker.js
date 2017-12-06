@@ -3,8 +3,8 @@ import {Image, Text, View} from  'react-native';
 import {Marker} from 'react-native-maps';
 import { width as w , height as h } from 'react-native-dimension';
 
-const height = h(50);
-const width = w(50);
+const height = h(60);
+const width = w(60);
 
 export default class CustomMarker extends Component {
 
