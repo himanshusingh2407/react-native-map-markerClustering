@@ -102,7 +102,7 @@ export default class MapMarkerClustering extends Component {
         this.state.region = region;
         if (this.state.numberOfMarkers > 1 && this.state.enableClustering) {
           // To disable clustering when maximum zoom level of map is reached
-          let maxZoom = (region.longitudeDelta < 0.0004 || region.latitudeDelta < 0.0004 );
+          let maxZoom = (region.longitudeDelta < 0.001 || region.latitudeDelta < 0.001 );
             if (region.latitudeDelta - this.state.initDelta > this.state.initDelta / divideBy) {
                 this.state.initDelta = region.latitudeDelta;
                 this.calculateCluster(1, region.latitudeDelta * clusterPercentageRange, maxZoom);

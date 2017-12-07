@@ -42,11 +42,11 @@ export default class CustomMarker extends Component {
         this.state.clusterBorderWidth = this.props.clusterBorderWidth;
 
         if( this.state.clusterColor === undefined || this.state.clusterColor == ''){
-            this.state.clusterColor = '#F5F5F5';
+            this.state.clusterColor = '#FC1424';
         }if( this.state.clusterTextColor === undefined || this.state.clusterTextColor == ''){
-            this.state.clusterTextColor = '#FF5252';
+            this.state.clusterTextColor = '#FFFFFF';
         }if( this.state.clusterBorderColor === undefined || this.state.clusterBorderColor == ''){
-            this.state.clusterBorderColor = '#FF5252';
+            this.state.clusterBorderColor = '#FFFFFF';
         }if( this.state.clusterBorderWidth === undefined || this.state.clusterBorderWidth == ''){
             this.state.clusterBorderWidth = 1;
         }
