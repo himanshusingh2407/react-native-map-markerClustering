@@ -113,11 +113,13 @@ export default class CustomMarker extends Component {
         }
 
         if(isCluster === 1){
+          const markerProps = Object.assign({}, this.state.props);
+          delete markerProps.image; // To remove custom marker image if it is a cluster
             if(this.props.onClusterPress){
                 return(
                     <Marker
                         key = {isCluster}
-                        {...this.state.props}
+                        {...markerProps}
                         onPress = {()=>{
                             this.props.onClusterPress(this.state.props.coordinate);
                         }}
@@ -130,7 +132,7 @@ export default class CustomMarker extends Component {
                 return(
                     <Marker
                         key = {isCluster}
-                        {...this.state.props}
+                        {...markerProps}
                         title={null}
                         >
                         {htmlElement}
