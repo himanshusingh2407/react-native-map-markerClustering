@@ -101,18 +101,20 @@ export default class MapMarkerClustering extends Component {
     onRegionChangeComplete(region) {
         this.state.region = region;
         if (this.state.numberOfMarkers > 1 && this.state.enableClustering) {
+          // To disable clustering when maximum zoom level of map is reached
+          let maxZoom = (region.longitudeDelta < 0.001 || region.latitudeDelta < 0.001 );
             if (region.latitudeDelta - this.state.initDelta > this.state.initDelta / divideBy) {
                 this.state.initDelta = region.latitudeDelta;
-                this.calculateCluster(1, region.latitudeDelta * clusterPercentageRange);
+                this.calculateCluster(1, region.latitudeDelta * clusterPercentageRange, maxZoom);
             }
             if (region.latitudeDelta - this.state.initDelta < -this.state.initDelta / divideBy) {
                 this.state.initDelta = region.latitudeDelta;
-                this.calculateCluster(-1, region.latitudeDelta * clusterPercentageRange);
+                this.calculateCluster(-1, region.latitudeDelta * clusterPercentageRange, maxZoom);
             }
         }
     }
 
-    calculateCluster(direction, clusterRange) {
+    calculateCluster(direction, clusterRange, maxZoom) {
         if (this.state.enableClustering) {
             this.state.markers.forEach((marker) => {
                 let belly = marker.belly;
@@ -126,7 +128,7 @@ export default class MapMarkerClustering extends Component {
                         if (id !== id2) {
                             let y2 = childMarker.props.coordinate.latitude;
                             let x2 = childMarker.props.coordinate.longitude;
-                            if (Math.abs(y - y2) < clusterRange && Math.abs(x - x2) < clusterRange) {
+                            if (Math.abs(y - y2) < clusterRange && Math.abs(x - x2) < clusterRange && !maxZoom) {
                                 belly.add(childMarker);
                                 marker.value += childMarker.value;
                                 this.state.markers.delete(childMarker);
@@ -137,7 +139,7 @@ export default class MapMarkerClustering extends Component {
                     belly.forEach((childMarker) => {
                         let y2 = childMarker.props.coordinate.latitude;
                         let x2 = childMarker.props.coordinate.longitude;
-                        if (Math.abs(y - y2) > clusterRange || Math.abs(x - x2) > clusterRange) {
+                        if (Math.abs(y - y2) > clusterRange || Math.abs(x - x2) > clusterRange || maxZoom) {
                             belly.delete(childMarker);
                             marker.value -= childMarker.value;
                             this.state.markers.add(childMarker);
@@ -146,7 +148,7 @@ export default class MapMarkerClustering extends Component {
                 }
             });
             if (direction === -1) {
-                this.calculateCluster(1, clusterRange);
+                this.calculateCluster(1, clusterRange, maxZoom);
             } else {
                 this.state.markersOnMap = [];
                 this.state.markers.forEach((marker) => {

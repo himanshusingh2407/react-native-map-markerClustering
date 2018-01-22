@@ -3,8 +3,8 @@ import {Image, Text, View} from  'react-native';
 import {Marker} from 'react-native-maps';
 import { width as w , height as h } from 'react-native-dimension';
 
-const height = h(100);
-const width = w(100);
+const height = h(60);
+const width = w(60);
 
 export default class CustomMarker extends Component {
 
@@ -14,9 +14,9 @@ export default class CustomMarker extends Component {
             isLoaded:false,
             props: {},
             value: 0,
-            clusterColor: '#F5F5F5',
-            clusterTextColor: '#FF5252',
-            clusterBorderColor: '#FF5252',
+            clusterColor: '#FC1424',
+            clusterTextColor: '#FFFFFF',
+            clusterBorderColor: '#FFFFFF',
             clusterBorderWidth: 1
         };
     }
@@ -42,11 +42,11 @@ export default class CustomMarker extends Component {
         this.state.clusterBorderWidth = this.props.clusterBorderWidth;
 
         if( this.state.clusterColor === undefined || this.state.clusterColor == ''){
-            this.state.clusterColor = '#F5F5F5';
+            this.state.clusterColor = '#FC1424';
         }if( this.state.clusterTextColor === undefined || this.state.clusterTextColor == ''){
-            this.state.clusterTextColor = '#FF5252';
+            this.state.clusterTextColor = '#FFFFFF';
         }if( this.state.clusterBorderColor === undefined || this.state.clusterBorderColor == ''){
-            this.state.clusterBorderColor = '#FF5252';
+            this.state.clusterBorderColor = '#FFFFFF';
         }if( this.state.clusterBorderWidth === undefined || this.state.clusterBorderWidth == ''){
             this.state.clusterBorderWidth = 1;
         }
@@ -113,15 +113,17 @@ export default class CustomMarker extends Component {
         }
 
         if(isCluster === 1){
+          const markerProps = Object.assign({}, this.state.props);
+          delete markerProps.image; // To remove custom marker image if it is a cluster
             if(this.props.onClusterPress){
                 return(
                     <Marker
                         key = {isCluster}
-                        {...this.state.props}
+                        {...markerProps}
                         onPress = {()=>{
                             this.props.onClusterPress(this.state.props.coordinate);
                         }}
-                        title=''
+                        title={null}
                         >
                         {htmlElement}
                     </Marker>
@@ -130,8 +132,8 @@ export default class CustomMarker extends Component {
                 return(
                     <Marker
                         key = {isCluster}
-                        {...this.state.props}
-                        title=''
+                        {...markerProps}
+                        title={null}
                         >
                         {htmlElement}
                     </Marker>
