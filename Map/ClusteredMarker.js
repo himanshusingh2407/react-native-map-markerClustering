@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Image, Text, View} from  'react-native';
+import {Image, Text, View, TouchableWithoutFeedback} from  'react-native';
 import {Marker} from 'react-native-maps';
 import { width as w , height as h } from 'react-native-dimension';
 
@@ -87,21 +87,25 @@ export default class CustomMarker extends Component {
         if(textForCluster !== ''){
             isCluster = 1;
             if(this.props.customClusterMarkerDesign && typeof this.props.customClusterMarkerDesign === "object"){
-                htmlElement = <View style = {{width: markerWidth, height: markerHeight, justifyContent: 'center', alignItems: 'center'}}>
+                htmlElement = <TouchableWithoutFeedback onPress = {()=>{
+                      this.props.onClusterPress(this.state.props.coordinate);
+                  }}><View style = {{width: markerWidth, height: markerHeight, justifyContent: 'center', alignItems: 'center'}}>
                     <Text style = {{width: markerWidth, textAlign: 'center', position:'absolute',
                         fontSize: textSize, backgroundColor: 'transparent', color: this.state.clusterTextColor, fontWeight: 'bold'}}
                           children = {textForCluster}/>
                     {this.props.customClusterMarkerDesign}
-                </View>;
+                </View></TouchableWithoutFeedback>;
             }else{
                 htmlElement = (
-                    <View style = {{ borderRadius: markerWidth, position: 'relative', backgroundColor: this.state.clusterColor, width: markerWidth, height: markerHeight,
+                  <TouchableWithoutFeedback onPress = {()=>{
+                        this.props.onClusterPress(this.state.props.coordinate);
+                    }}><View style = {{ borderRadius: markerWidth, position: 'relative', backgroundColor: this.state.clusterColor, width: markerWidth, height: markerHeight,
                         borderWidth: this.state.clusterBorderWidth, borderColor: this.state.clusterBorderColor, justifyContent: 'center', alignItems: 'center'}}>
                         <Text
                             style = {{width: markerWidth, textAlign: 'center',
                                 fontSize: textSize, backgroundColor: 'transparent', color: this.state.clusterTextColor, fontWeight: 'bold'}}>
                             {textForCluster}</Text>
-                    </View>);
+                    </View></TouchableWithoutFeedback>);
             }
         }else{
             isCluster = 0;
@@ -115,30 +119,15 @@ export default class CustomMarker extends Component {
         if(isCluster === 1){
           const markerProps = Object.assign({}, this.state.props);
           delete markerProps.image; // To remove custom marker image if it is a cluster
-            if(this.props.onClusterPress){
-                return(
-                    <Marker
-                        key = {isCluster}
-                        {...markerProps}
-                        onPress = {()=>{
-                            this.props.onClusterPress(this.state.props.coordinate);
-                        }}
-                        title={null}
-                        >
-                        {htmlElement}
-                    </Marker>
-                );
-            }else{
-                return(
-                    <Marker
-                        key = {isCluster}
-                        {...markerProps}
-                        title={null}
-                        >
-                        {htmlElement}
-                    </Marker>
-                );
-            }
+            return(
+                <Marker
+                    key = {isCluster}
+                    {...markerProps}
+                    title={null}
+                    onCalloutPress={null}>
+                    {htmlElement}
+                </Marker>
+            );
         }else{
             return(
                 <Marker
